@@ -33,7 +33,7 @@ def handle_common_exception(e):
 
 
 @app.route('/', methods=['POST'])
-def hello_world():
+def chess_calulator():
     input_data = request.get_json()
     params = InputSchema().load(input_data)
 
@@ -43,7 +43,3 @@ def hello_world():
 
     soultion_count = calculate(figure_type, board_size, board_size)
     return {"solutionsCount": soultion_count}
-
-
-if __name__ == '__main__':
-    app.run(port=8000)
