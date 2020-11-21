@@ -43,3 +43,8 @@ def chess_calulator():
 
     soultion_count = calculate(figure_type, board_size, board_size)
     return {"solutionsCount": soultion_count}
+
+
+
+if __name__ == '__main__':
+    app.run()
