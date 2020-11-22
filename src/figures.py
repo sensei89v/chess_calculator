@@ -13,12 +13,14 @@ class Rook(Figure):
         x, y = coord
         return {(i, y) for i in range(0, board_size) if i != x} | {(x, i) for i in range(0, board_size) if i != y}
 
+
 class Bishop(Figure):
     @staticmethod
     def calculate_attacked_positions(coord, board_size):
         x, y = coord
         return {(x + i, y + i) for i in range(-board_size, board_size) if (i != 0 and 0 <= (x + i) < board_size and 0 <= (y + i) < board_size)} | \
                {(x - i, y + i) for i in range(-board_size, board_size) if (i != 0 and 0 <= (x - i) < board_size and 0 <= (y + i) < board_size)}
+
 
 class Queen(Figure):
     @staticmethod

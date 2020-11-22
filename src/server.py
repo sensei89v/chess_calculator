@@ -21,6 +21,7 @@ def handle_flask_exception(e):
     response.content_type = "application/json"
     return response
 
+
 # Todo: upgrade error handler
 @app.errorhandler(Exception)
 def handle_common_exception(e):
@@ -43,7 +44,6 @@ def chess_calulator():
 
     soultion_count = calculate(figure_type, board_size, board_size)
     return {"solutionsCount": soultion_count}
-
 
 
 if __name__ == '__main__':
