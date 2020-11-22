@@ -22,7 +22,9 @@ uwsgi --http :8000  -w chess_calculator.server:app --master --processes 8
 ```
 # API
 endpoint: /
+
 method: only POST (for JSON exchange)
+
 body:
 ```
 {
@@ -38,7 +40,9 @@ response:
 ```
 
 endpoint: /quick  (using precalculated values)
+
 method: only POST (for JSON exchange)
+
 body:
 ```
 {
@@ -51,6 +55,7 @@ response:
 {
     "solutionsCount": <int>
 }
+```
 # Running tests
 ```
 pip install uwsgi
