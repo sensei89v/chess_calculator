@@ -1,6 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import json
 from werkzeug.exceptions import HTTPException
+from marshmallow import ValidationError
 
 from .calculation import calculate
 from .const import FigureType
@@ -10,27 +11,31 @@ from .schemas import InputSchema
 app = Flask(__name__)
 
 
+def _create_error_response(name, description='', code=500):
+    """
+    Common error function
+    """
+    response = {
+        "code": code,
+        "name": name,
+        "description": description
+    }
+    return jsonify(response), code
+
+
 @app.errorhandler(HTTPException)
-def handle_flask_exception(e):
-    response = e.get_response()
-    response.data = json.dumps({
-        "code": e.code,
-        "name": e.name,
-        "description": e.description,
-    })
-    response.content_type = "application/json"
-    return response
+def handle_flask_exception(exception):
+    return _create_error_response(exception.name, exception.description, exception.code)
 
 
-# Todo: upgrade error handler
+@app.errorhandler(ValidationError)
+def handle_validation_exception(exception):
+    return _create_error_response("Incorrect input data", str(exception), 400)
+
+
 @app.errorhandler(Exception)
-def handle_common_exception(e):
-    response = json.dumps({
-        "code": 400,
-        "name": 'Something wrong',
-        "description": str(e),
-    })
-    return response, 400
+def handle_common_exception(exception):
+    return _create_error_response("internal exception", str(exception), 500)
 
 
 @app.route('/', methods=['POST'])
