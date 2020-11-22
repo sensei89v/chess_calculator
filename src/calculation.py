@@ -1,6 +1,7 @@
 from .figures import get_figure_class_by_figure_type
 
 
+# Use set to decrease amount of addtitional calculation
 def _build_board(board_size):
     return {(x, y) for x in range(board_size) for y in range(board_size)}
 
@@ -21,7 +22,7 @@ def _run_calculation(figure_class, board, board_size, figure_count):
     return result
 
 
-def calculate(figure_type, board_size, figure_count):
+def calculate_variant_count(figure_type, board_size, figure_count):
     if board_size <= 0:
         return 0
 

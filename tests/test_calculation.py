@@ -1,7 +1,7 @@
 import pytest
 
 from src.const import FigureType
-from src.calculation import calculate
+from src.calculation import calculate_variant_count
 
 
 @pytest.mark.parametrize('figure_type, board_size, figure_count, available_result',
@@ -13,5 +13,5 @@ from src.calculation import calculate
     ],
 )
 def test_knight_attacked(figure_type, board_size, figure_count, available_result):
-    result = calculate(figure_type, board_size, figure_count)
+    result = calculate_variant_count(figure_type, board_size, figure_count)
     assert available_result == result

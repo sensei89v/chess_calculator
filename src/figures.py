@@ -25,7 +25,6 @@ class Bishop(Figure):
 class Queen(Figure):
     @staticmethod
     def calculate_attacked_positions(coord, board_size):
-        # TODO: apply inheritence
         attacked = Rook.calculate_attacked_positions(coord, board_size)
         attacked |= Bishop.calculate_attacked_positions(coord, board_size)
         return attacked

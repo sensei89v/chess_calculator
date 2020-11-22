@@ -36,6 +36,26 @@ response:
     "solutionsCount": <int>
 }
 ```
+
+endpoint: /quick  (using precalculated values)
+method: only POST (for JSON exchange)
+body:
+```
+{
+    "n": <int>
+    "chessPiece": "queen"|"knight"|"rook"|"bishop"
+}
+```
+response:
+```
+{
+    "solutionsCount": <int>
+}
+# Running tests
+```
+pip install uwsgi
+python -m pytest .
+```
 # What can improve
 Add parameters(port, ip address) for one process mode.
 Current algorithm supports calculation in case when figure count is not equal linear size of a board. Add this feature to API.
